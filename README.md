@@ -8,7 +8,7 @@ Uma simples biblioteca para usar o meio de pagamento Abacate Pay
 
 - [Como instalar](#como-instalar)
 - [Configurando a Biblioteca](#configurando-a-biblioteca)
-- [principios básicos](#principios-basicos)
+- [principios básicos](#principios-básicos)
 
 
 ## Como Instalar
