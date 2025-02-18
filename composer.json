@@ -1,0 +1,21 @@
+{
+    "name": "adahox/abacatepay",
+    "description": "Package para usar Metodo de pagamento Abacate pay",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "adahox\\AbacatePay\\": "src/"
+        }
+    },
+    "require": {
+        "laravel/framework": "^11.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "adahox\\AbacatePay\\AbacatePayServiceProvider"
+            ]
+        }
+    }
+}
