@@ -2,26 +2,24 @@
 
 namespace adahox\AbacatePay\Services;
 
-use adahox\AbacatePay\Services\Interfaces\Creatable;
-use adahox\AbacatePay\Services\Interfaces\Listable;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Response;
 use adahox\AbacatePay\Services\Enums\URI;
-use adahox\AbacatePay\Services\Traits\Http\Http;
-
+use adahox\AbacatePay\Services\Interfaces\Creatable;
+use adahox\AbacatePay\Services\Interfaces\Listable;
 
 class BillingService implements Listable, Creatable
 {
-    use Http;
     public function create($resource): Response
     {
-        $response = $this->post(URI::ADD_COBRANCA, $resource);
+        $response = Http::abacatepay()->post(URI::CREATE_BILLING, $resource);
 
         return $response;
     }
 
     public function list(): Response
     {
-        $response = $this->get(URI::LIST_COBRANCA);
+        $response = Http::abacatepay()->get(URI::LIST_BILLING);
 
         return $response;
     }

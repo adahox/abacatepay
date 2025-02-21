@@ -6,5 +6,5 @@ use Illuminate\Http\Client\Response;
 
 interface Listable
 {
-    public function list();
+    public function list(): Response;
 }
