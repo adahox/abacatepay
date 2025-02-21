@@ -11,6 +11,6 @@ class ValidateAbacateServicePayCommand extends Command
 
     public function handle()
     {
-        $this->info('Validating Abacate service payment...');
+        $this->info('still in development');
     }
 }
