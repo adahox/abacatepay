@@ -1,7 +1,7 @@
 {
     "name": "adahox/abacatepay",
-    "version": "1.0.0",
-    "description": "Package para usar Metodo de pagamento Abacate pay",
+    "version": "2.0.0",
+    "description": "Biblioteca para usar método de pagamento Abacate pay",
     "type": "library",
     "license": "MIT",
     "autoload": {
