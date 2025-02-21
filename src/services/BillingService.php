@@ -1,15 +1,15 @@
 <?php
 
-namespace adahox\AbacatePay\Resources;
+namespace adahox\AbacatePay\Services;
 
 use adahox\AbacatePay\Services\Interfaces\Creatable;
 use adahox\AbacatePay\Services\Interfaces\Listable;
 use Illuminate\Http\Client\Response;
 use adahox\AbacatePay\Services\Enums\URI;
 use adahox\AbacatePay\Services\Traits\Http\Http;
-use adahox\AbacatePay\Services\Interfaces\AbacatePayResource;
 
-class CobrancaResource implements Listable, Creatable
+
+class BillingService implements Listable, Creatable
 {
     use Http;
     public function create($resource): Response

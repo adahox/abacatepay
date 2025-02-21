@@ -1,6 +1,6 @@
 <?php
 
-namespace adahox\AbacatePay\Resources;
+namespace adahox\AbacatePay\Services;
 
 use adahox\AbacatePay\Services\Interfaces\Creatable;
 use adahox\AbacatePay\Services\Interfaces\Listable;
@@ -9,7 +9,7 @@ use adahox\AbacatePay\Services\Enums\URI;
 use adahox\AbacatePay\Services\Traits\Http\Http;
 
 
-class ClienteResource implements Creatable, Listable
+class CustomerService implements Creatable, Listable
 {
     use Http;
 
