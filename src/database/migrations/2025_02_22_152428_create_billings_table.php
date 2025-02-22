@@ -23,9 +23,9 @@ return new class extends Migration {
             $table->string('frequency');
             $table->string('amount');
             $table->string('fee');
-            $table->string('produto_id');
-            $table->string('produto_externalId');
-            $table->string('produto_quantity');
+            $table->string('product_id');
+            $table->string('product_externalId');
+            $table->string('product_quantity');
 
             $table->timestamps();
         });

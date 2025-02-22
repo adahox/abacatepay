@@ -19,9 +19,9 @@ class AbacatePayBillingModel extends Model
         'frequency',
         'amount',
         'fee',
-        'produto_id',
-        'produto_externalId',
-        'produto_quantity',
+        'product_id',
+        'product_externalId',
+        'product_quantity',
     ];
 
     public function addIfNotExist($customer): AbacatePayBillingModel

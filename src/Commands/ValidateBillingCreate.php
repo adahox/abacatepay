@@ -68,9 +68,9 @@ class ValidateBillingCreate extends Command
                 'frequency' => $data_response['frequency'],
                 'amount' => $data_response['amount'],
                 'fee' => $data_response['metadata']['fee'],
-                'produto_id' => $data_response['products'][0]['id'],
-                'produto_externalId' => $data_response['products'][0]['externalId'],
-                'produto_quantity' => $data_response['products'][0]['quantity'],
+                'product_id' => $data_response['products'][0]['id'],
+                'product_externalId' => $data_response['products'][0]['externalId'],
+                'product_quantity' => $data_response['products'][0]['quantity'],
             ];
 
             $customer->addIfNotExist($bill);
