@@ -28,7 +28,7 @@ class AbacatePayServiceProvider extends ServiceProvider
             ])->baseUrl('https://api.abacatepay.com/v1');
         });
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . './database/migrations');
 
         $this->publishes([
             __DIR__ . '/database/migrations' => database_path('migrations'),
