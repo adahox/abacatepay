@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
 use adahox\AbacatePay\Services\Enums\URI;
-use adahox\AbacatePay\Services\Interfaces\Listable;
-use adahox\AbacatePay\Services\Interfaces\Creatable;
+use adahox\AbacatePay\Interfaces\Listable;
+use adahox\AbacatePay\Interfaces\Creatable;
 use adahox\AbacatePay\Requests\CreateCustomerRequest;
 
 class CustomerService implements Creatable, Listable
