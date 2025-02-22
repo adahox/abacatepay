@@ -4,7 +4,7 @@ namespace adahox\AbacatePay\Commands;
 
 use adahox\AbacatePay\Requests\CreateCustomerRequest;
 use adahox\AbacatePay\Services\AbacatePay;
-use adahox\AbacatePay\Models\AbacatePayCustomerModel;
+use App\Models\AbacatePayCustomerModel;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 
