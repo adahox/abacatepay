@@ -1,6 +1,6 @@
 <?php
 
-namespace adahox\AbacatePay\Services\Interfaces;
+namespace adahox\AbacatePay\Interfaces;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

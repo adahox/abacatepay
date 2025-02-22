@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use adahox\AbacatePay\Services\Enums\URI;
-use adahox\AbacatePay\Services\Interfaces\Creatable;
-use adahox\AbacatePay\Services\Interfaces\Listable;
+use adahox\AbacatePay\Interfaces\Creatable;
+use adahox\AbacatePay\Interfaces\Listable;
 
 class BillingService implements Creatable, Listable
 {
