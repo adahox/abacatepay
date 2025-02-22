@@ -9,15 +9,20 @@ use adahox\AbacatePay\Services\Enums\URI;
 use adahox\AbacatePay\Interfaces\Listable;
 use adahox\AbacatePay\Interfaces\Creatable;
 use adahox\AbacatePay\Requests\CreateCustomerRequest;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerService implements Creatable, Listable
 {
     public function create(Request $request): Response
     {
-        $CustomerRequest = CreateCustomerRequest::createFrom($request);
+        $customerRequest = CreateCustomerRequest::createFrom($request);
 
-        if ($CustomerRequest->fails()) {
-            return response()->json($CustomerRequest->errors(), 400);
+        $validator = Validator::make($customerRequest->all(), $customerRequest->rules());
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
         }
 
         $response = Http::abacatepay()->post(URI::CREATE_CUSTOMER, $request->validated());

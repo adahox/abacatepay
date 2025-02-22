@@ -9,15 +9,20 @@ use Illuminate\Http\Request;
 use adahox\AbacatePay\Services\Enums\URI;
 use adahox\AbacatePay\Interfaces\Creatable;
 use adahox\AbacatePay\Interfaces\Listable;
+use Illuminate\Support\Facades\Validator;
 
 class BillingService implements Creatable, Listable
 {
     public function create(Request $request): Response
     {
-        $CustomerRequest = CreateBillingRequest::createFrom($request);
+        $billingRequest = CreateBillingRequest::createFrom($request);
 
-        if ($CustomerRequest->fails()) {
-            return response()->json($CustomerRequest->errors(), 400);
+        $validator = Validator::make($billingRequest->all(), $billingRequest->rules());
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
         }
 
         $response = Http::abacatepay()->post(URI::CREATE_BILLING, $request->validated());
