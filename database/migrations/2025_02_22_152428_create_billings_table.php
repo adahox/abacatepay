@@ -10,6 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
+
         Schema::create('abacatepay_billings', function (Blueprint $table) {
             $table->id();
             $table->string('payment_id');
