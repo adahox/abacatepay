@@ -58,7 +58,7 @@ class ValidateBillingCreate extends Command
             $data_response = $response->json()['data'];
 
             $bill = [
-                'payment_id' => $data_response['id'],
+                'paymentId' => $data_response['id'],
                 'status' => $data_response['status'],
                 'customer_taxId' => $data_response['customer']["metadata"]['taxId'],
                 'customer_name' => $data_response['customer']["metadata"]['name'],
@@ -68,7 +68,7 @@ class ValidateBillingCreate extends Command
                 'frequency' => $data_response['frequency'],
                 'amount' => $data_response['amount'],
                 'fee' => $data_response['metadata']['fee'],
-                'product_id' => $data_response['products'][0]['id'],
+                'productId' => $data_response['products'][0]['id'],
                 'product_externalId' => $data_response['products'][0]['externalId'],
                 'product_quantity' => $data_response['products'][0]['quantity'],
             ];

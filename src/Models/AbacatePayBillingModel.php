@@ -9,7 +9,7 @@ class AbacatePayBillingModel extends Model
     protected $table = 'abacatepay_billings';
 
     protected $fillable = [
-        'payment_id',
+        'paymentId',
         'status',
         'customer_taxId',
         'customer_name',
@@ -19,7 +19,7 @@ class AbacatePayBillingModel extends Model
         'frequency',
         'amount',
         'fee',
-        'product_id',
+        'productId',
         'product_externalId',
         'product_quantity',
     ];

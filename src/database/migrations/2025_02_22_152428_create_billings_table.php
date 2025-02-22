@@ -13,7 +13,7 @@ return new class extends Migration {
 
         Schema::create('abacatepay_billings', function (Blueprint $table) {
             $table->id();
-            $table->string('payment_id');
+            $table->string('paymentId');
             $table->string('status');
             $table->string('customer_taxId');
             $table->string('customer_name');
@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->string('frequency');
             $table->string('amount');
             $table->string('fee');
-            $table->string('product_id');
+            $table->string('productId');
             $table->string('product_externalId');
             $table->string('product_quantity');
 
