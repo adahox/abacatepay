@@ -2,18 +2,18 @@
 
 namespace adahox\AbacatePay\Services;
 
-use adahox\AbacatePay\Resources\ClienteResource;
-use adahox\AbacatePay\Resources\CobrancaResource;
+use adahox\AbacatePay\Services\CustomerService;
+use adahox\AbacatePay\Services\BillingService;
 
 class AbacatePay
 {
-    public static function Cliente()
+    public static function Customer(): CustomerService
     {
-        return new ClienteResource();
+        return new CustomerService();
     }
 
-    public static function Cobranca(): CobrancaResource
+    public static function Billing(): BillingService
     {
-        return new CobrancaResource();
+        return new BillingService();
     }
 }

@@ -2,8 +2,8 @@
 
 namespace adahox\AbacatePay\Services\Interfaces;
 
-use Illuminate\Http\Client\Response;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 interface Updatable
 {

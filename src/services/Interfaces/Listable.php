@@ -2,7 +2,7 @@
 
 namespace adahox\AbacatePay\Services\Interfaces;
 
-use Illuminate\Http\Client\Response;
+use Illuminate\Http\Response;
 
 interface Listable
 {
