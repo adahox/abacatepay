@@ -30,7 +30,7 @@ class CreateBillingRequest extends FormRequest
             'customer.name' => 'required|string|max:255',
             'customer.cellphone' => 'required|string|max:255',
             'customer.taxId' => 'required|string|max:255',
-            'customer.email' => 'required|email|unique:abacatepay_customers,email',
+            'customer.email' => 'required|email',
         ];
     }
 
@@ -74,7 +74,6 @@ class CreateBillingRequest extends FormRequest
             'customer.taxId.max' => 'O campo CPF deve ter no máximo 255 caracteres',
             'customer.email.required' => 'O campo email é obrigatório',
             'customer.email.email' => 'O campo email deve ser um email válido',
-            'customer.email.unique' => 'O email informado já está em uso',
         ];
     }
 }
