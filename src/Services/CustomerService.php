@@ -2,14 +2,17 @@
 
 namespace adahox\AbacatePay\Services;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Http;
 use adahox\AbacatePay\Services\Enums\URI;
 use adahox\AbacatePay\Interfaces\Listable;
 use adahox\AbacatePay\Interfaces\Creatable;
 use adahox\AbacatePay\Requests\CreateCustomerRequest;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Validator;
+
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
 class CustomerService implements Creatable, Listable
 {
@@ -20,7 +23,16 @@ class CustomerService implements Creatable, Listable
         $validator = Validator::make($customerRequest->all(), $customerRequest->rules());
 
         if ($validator->fails()) {
-            return response()->make(['errors' => $validator->errors()], 422);
+
+            $content = json_encode(['errors' => $validator->errors()], JSON_UNESCAPED_UNICODE);
+
+            return new Response(
+                new GuzzleResponse(
+                    422,
+                    ['Content-Type' => 'application/json'],
+                    $content
+                )
+            );
         }
 
         $response = Http::abacatepay()->post(URI::CREATE_CUSTOMER->value, $validator->validated());

@@ -25,7 +25,12 @@ class CreateBillingRequest extends FormRequest
             'products.*.price' => 'required|integer',
             'returnUrl' => 'required|url|max:255',
             'completionUrl' => 'required|url|max:255',
-            'customerId' => 'required|string',
+            'customerId' => 'string',
+            'customer' => 'array',
+            'customer.name' => 'required|string|max:255',
+            'customer.cellphone' => 'required|string|max:255',
+            'customer.taxId' => 'required|string|max:255',
+            'customer.email' => 'required|email|unique:abacatepay_customers,email',
         ];
     }
 
@@ -56,8 +61,20 @@ class CreateBillingRequest extends FormRequest
             'completionUrl.required' => 'O campo completionUrl é obrigatório',
             'completionUrl.url' => 'O campo completionUrl deve ser uma url válida',
             'completionUrl.max' => 'O campo completionUrl deve ter no máximo 255 caracteres',
-            'customerId.required' => 'O campo customerId é obrigatório',
             'customerId.string' => 'O campo customerId deve ser uma string',
+            'customer.array' => 'O campo customer deve ser um array',
+            'customer.name.required' => 'O campo nome é obrigatório',
+            'customer.name.string' => 'O campo nome deve ser uma string',
+            'customer.name.max' => 'O campo nome deve ter no máximo 255 caracteres',
+            'customer.cellphone.required' => 'O campo celular é obrigatório',
+            'customer.cellphone.string' => 'O campo celular deve ser uma string',
+            'customer.cellphone.max' => 'O campo celular deve ter no máximo 255 caracteres',
+            'customer.taxId.required' => 'O campo CPF é obrigatório',
+            'customer.taxId.string' => 'O campo CPF deve ser uma string',
+            'customer.taxId.max' => 'O campo CPF deve ter no máximo 255 caracteres',
+            'customer.email.required' => 'O campo email é obrigatório',
+            'customer.email.email' => 'O campo email deve ser um email válido',
+            'customer.email.unique' => 'O email informado já está em uso',
         ];
     }
 }

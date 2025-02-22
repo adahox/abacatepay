@@ -2,14 +2,17 @@
 
 namespace adahox\AbacatePay\Services;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Response;
 use adahox\AbacatePay\Services\Enums\URI;
 use adahox\AbacatePay\Interfaces\Listable;
-use Illuminate\Support\Facades\Validator;
 use adahox\AbacatePay\Interfaces\Creatable;
 use adahox\AbacatePay\Requests\CreateBillingRequest;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Validator;
+
+use GuzzleHttp\Psr7\Response as GuzzleResponse;
 
 class BillingService implements Creatable, Listable
 {
@@ -20,10 +23,19 @@ class BillingService implements Creatable, Listable
         $validator = Validator::make($billingRequest->all(), $billingRequest->rules());
 
         if ($validator->fails()) {
-            return response()->make(['errors' => $validator->errors()], 422);
+
+            $content = json_encode(['errors' => $validator->errors()], JSON_UNESCAPED_UNICODE);
+
+            return new Response(
+                new GuzzleResponse(
+                    422,
+                    ['Content-Type' => 'application/json'],
+                    $content
+                )
+            );
         }
 
-        $response = Http::abacatepay()->post(URI::CREATE_BILLING->value, $request->validated());
+        $response = Http::abacatepay()->post(URI::CREATE_BILLING->value, $validator->validated());
 
         return $response;
     }

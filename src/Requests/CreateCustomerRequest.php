@@ -17,7 +17,7 @@ class CreateCustomerRequest extends FormRequest
             'name' => 'required|string|max:255',
             'cellphone' => 'required|string|max:255',
             'taxId' => 'required|string|max:255',
-            'email' => 'required|email|unique:customers,email',
+            'email' => 'required|email|unique:abacatepay_customers,email',
         ];
     }
 

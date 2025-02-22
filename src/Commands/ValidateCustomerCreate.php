@@ -4,6 +4,7 @@ namespace adahox\AbacatePay\Commands;
 
 use adahox\AbacatePay\Requests\CreateCustomerRequest;
 use adahox\AbacatePay\Services\AbacatePay;
+use adahox\AbacatePay\Models\AbacatePayCustomerModel;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,9 @@ class ValidateCustomerCreate extends Command
 
         $customerFormSimulator = [
             'name' => 'John Doe',
-            'email' => 'John@doe.com',
-            'cellphone' => '',
-            'taxId' => ''
+            'email' => 'adahox@doe.com',
+            'cellphone' => '31993543165',
+            'taxId' => '11152166603'
         ];
 
         $request = Request::create('/', 'POST', $customerFormSimulator);
@@ -32,8 +33,14 @@ class ValidateCustomerCreate extends Command
 
         if ($response->status() === 200) {
             $this->info('customer service is working');
+
+            $this->info("trying add customer on table...");
+
+            $customer = new AbacatePayCustomerModel();
+            $customer->addIfNotExist($customerFormSimulator);
+
         } else {
-            $this->error('customer service is not working: ' . $response->getContent());
+            $this->error('customer service is not working: ' . $response->body());
         }
     }
 }

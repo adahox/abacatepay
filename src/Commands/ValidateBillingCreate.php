@@ -2,9 +2,11 @@
 
 namespace adahox\AbacatePay\Commands;
 
-use adahox\AbacatePay\Requests\CreateBillingRequest;
-use adahox\AbacatePay\Requests\CreateCustomerRequest;
+use App\Models\AbacatePayBillingModel;
+
 use adahox\AbacatePay\Services\AbacatePay;
+use \adahox\AbacatePay\Requests\CreateBillingRequest;
+
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 
@@ -30,21 +32,50 @@ class ValidateBillingCreate extends Command
                     'price' => 100
                 ]
             ],
-            'returnUrl' => '',
-            'completionUrl' => '',
-            'customerId' => ''
+            "customer" => [
+                'name' => 'John Doe',
+                'email' => 'JohnBilling@doe.com',
+                'cellphone' => '31993543165',
+                'taxId' => '11152166603'
+            ],
+            'returnUrl' => 'https://www.google.com',
+            'completionUrl' => 'https://www.google.com/'
         ];
 
         $request = Request::create('/', 'POST', $billingFormSimulator);
 
-        $createCustomerRequest = CreateBillingRequest::createFrom($request);
+        $createBillingRequest = CreateBillingRequest::createFrom($request);
 
-        $response = $abacatePay->Customer()->create($createCustomerRequest);
+        $response = $abacatePay->Billing()->create($createBillingRequest);
 
         if ($response->status() === 200) {
-            $this->info('Create billing is working.');
+            $this->info('billing service is working');
+
+            $this->info("trying add billing on table...");
+
+            $customer = new AbacatePayBillingModel();
+
+            $data_response = $response->json()['data'];
+
+            $bill = [
+                'payment_id' => $data_response['id'],
+                'status' => $data_response['status'],
+                'customer_taxId' => $data_response['customer']["metadata"]['taxId'],
+                'customer_name' => $data_response['customer']["metadata"]['name'],
+                'customer_email' => $data_response['customer']["metadata"]['email'],
+                'customer_cellphone' => $data_response['customer']["metadata"]['cellphone'],
+                'payment_method' => $data_response['methods'][0],
+                'frequency' => $data_response['frequency'],
+                'amount' => $data_response['amount'],
+                'fee' => $data_response['metadata']['fee'],
+                'produto_id' => $data_response['products'][0]['id'],
+                'produto_externalId' => $data_response['products'][0]['externalId'],
+                'produto_quantity' => $data_response['products'][0]['quantity'],
+            ];
+
+            $customer->addIfNotExist($bill);
         } else {
-            $this->error('Create billing is not working: ' . $response->getContent());
+            $this->error('Create billing is not working: ' . $response->body());
         }
     }
 }
