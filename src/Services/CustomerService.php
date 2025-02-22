@@ -20,19 +20,17 @@ class CustomerService implements Creatable, Listable
         $validator = Validator::make($customerRequest->all(), $customerRequest->rules());
 
         if ($validator->fails()) {
-            return response()->json([
-                'errors' => $validator->errors()
-            ], 422);
+            return response()->make(['errors' => $validator->errors()], 422);
         }
 
-        $response = Http::abacatepay()->post(URI::CREATE_CUSTOMER, $request->validated());
+        $response = Http::abacatepay()->post(URI::CREATE_CUSTOMER->value, $validator->validated());
 
         return $response;
     }
 
     public function list(): Response
     {
-        $response = Http::abacatepay()->get(URI::LIST_CUSTOMER);
+        $response = Http::abacatepay()->get(URI::LIST_CUSTOMER->value);
 
         return $response;
     }
