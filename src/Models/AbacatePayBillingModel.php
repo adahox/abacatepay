@@ -24,9 +24,9 @@ class AbacatePayBillingModel extends Model
         'product_quantity',
     ];
 
-    public function addIfNotExist($customer): AbacatePayBillingModel
+    public function addIfNotExist($billing): AbacatePayBillingModel
     {
-        return $this->firstOrCreate($customer);
+        return $this->firstOrCreate($billing);
     }
 
 }
